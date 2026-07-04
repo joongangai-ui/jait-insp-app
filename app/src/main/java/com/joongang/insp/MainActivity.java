@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         s.setLoadWithOverviewMode(true);
         s.setUseWideViewPort(true);
         s.setBuiltInZoomControls(false);
+        s.setSupportZoom(false);
+        s.setTextZoom(100);            // ★ 시스템 글꼴 크기 무시 → PWA(사파리)와 동일 렌더(글자 뒤틀림 방지)
         s.setMediaPlaybackRequiresUserGesture(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* ─────────── 인앱 자동 업데이트 (사이드로드 APK) ─────────── */
-    private static final String VERSION_URL = "https://jaitseoul.synology.me/printer-monitor/nas-web/app_version.json";
+    private static final String VERSION_URL = "https://raw.githubusercontent.com/joongangai-ui/jait-insp-app/main/app_version.json";
     private long updDownloadId = -1;
     private BroadcastReceiver updReceiver;
 
@@ -197,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
             if (apk.exists()) apk.delete();
             android.app.DownloadManager dm = (android.app.DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             android.app.DownloadManager.Request req = new android.app.DownloadManager.Request(Uri.parse(url));
-            req.setTitle("중앙아이티 점검 업데이트");
+            req.setTitle("JAIT PMS 업데이트");
             req.setNotificationVisibility(android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             req.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, "update.apk");
             req.setMimeType("application/vnd.android.package-archive");
