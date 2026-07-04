@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 콜드스타트 스플래시: 브랜드 다크 배경 + 중앙 로고 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/brand_dark"/>
+    <item android:width="176dp" android:height="176dp" android:gravity="center">
+        <bitmap android:src="@mipmap/ic_launcher" android:gravity="center"/>
+    </item>
+</layer-list>
