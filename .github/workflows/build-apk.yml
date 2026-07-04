@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,11 +36,18 @@ jobs:
       - name: Rename APK
         run: |
           mkdir -p out
-          cp app/build/outputs/apk/debug/app-debug.apk "out/중앙아이티점검.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "out/JAIT-PMS.apk"
 
-      - name: Upload APK
+      - name: Upload APK (artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: joongang-insp-apk
-          path: out/중앙아이티점검.apk
+          name: JAIT-PMS-apk
+          path: out/JAIT-PMS.apk
           if-no-files-found: error
+
+      - name: Publish Release (public download)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.2.0
+          name: JAIT PMS v1.2.0
+          files: out/JAIT-PMS.apk
