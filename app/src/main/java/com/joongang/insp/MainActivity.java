@@ -93,7 +93,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
+
+            // 메인 페이지 로딩 실패(네트워크 끊김 등) → 친절한 오프라인 화면
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, android.webkit.WebResourceError error) {
+                if (request != null && request.isForMainFrame()) {
+                    showOfflinePage();
+                }
+            }
         });
+
+        // 오프라인 화면의 '다시 시도' → 메인 페이지 재로딩 (신뢰된 자사 페이지에만 노출)
+        web.addJavascriptInterface(new Object() {
+            @android.webkit.JavascriptInterface
+            public void retry() { runOnUiThread(() -> web.loadUrl(START_URL)); }
+        }, "JAITApp");
 
         web.setWebChromeClient(new WebChromeClient() {
             // getUserMedia(카메라/마이크) 권한 자동 허용
@@ -137,6 +151,28 @@ public class MainActivity extends AppCompatActivity {
 
         // 앱 켤 때 새 버전 있으면 업데이트 안내(백그라운드 확인 · 시작 방해 안 되게 약간 지연)
         web.postDelayed(this::checkForUpdate, 2500);
+    }
+
+    /* 네트워크 오류 시 표시할 친절한 오프라인 화면(내장 HTML, 별도 파일 불필요) */
+    private void showOfflinePage() {
+        String html = "<!DOCTYPE html><html lang='ko'><head><meta charset='utf-8'>"
+            + "<meta name='viewport' content='width=device-width,initial-scale=1,user-scalable=no'>"
+            + "<style>html,body{margin:0;height:100%}"
+            + "body{background:#0f172a;color:#e5edf7;font-family:-apple-system,'Noto Sans KR','Malgun Gothic',sans-serif;"
+            + "display:flex;align-items:center;justify-content:center;padding:24px}"
+            + ".w{width:100%;max-width:360px;text-align:center}"
+            + ".i{width:96px;height:96px;margin:0 auto 22px;border-radius:24px;background:#1e3a5f;"
+            + "display:flex;align-items:center;justify-content:center;font-size:46px}"
+            + "h1{font-size:20px;margin:0 0 10px;font-weight:800}"
+            + "p{font-size:14.5px;line-height:1.6;color:#9fb4cf;margin:0 0 26px}"
+            + "button{width:100%;padding:15px 0;border:0;border-radius:14px;background:#0284c7;color:#fff;font-size:16px;font-weight:800}"
+            + "</style></head><body><div class='w'>"
+            + "<div class='i'>&#128225;</div>"
+            + "<h1>인터넷에 연결할 수 없습니다</h1>"
+            + "<p>네트워크 상태를 확인한 뒤 다시 시도해주세요.<br>Wi-Fi 또는 모바일 데이터가 켜져 있는지 확인하세요.</p>"
+            + "<button onclick=\"try{JAITApp.retry()}catch(e){location.reload()}\">다시 시도</button>"
+            + "</div></body></html>";
+        web.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);
     }
 
     /* ─────────── 인앱 자동 업데이트 (사이드로드 APK) ─────────── */
