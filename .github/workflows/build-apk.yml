@@ -48,6 +48,6 @@ jobs:
       - name: Publish Release (public download)
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.3.0
-          name: JAIT PMS v1.3.0
+          tag_name: v1.4.0
+          name: JAIT PMS v1.4.0
           files: out/JAIT-PMS.apk
