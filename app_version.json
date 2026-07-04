@@ -1,6 +1,6 @@
 {
-  "versionCode": 3,
-  "versionName": "1.3.0",
-  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.3.0/JAIT-PMS.apk",
-  "notes": "글자·화면 정렬 개선(PWA와 동일 렌더) · 외부 자동업데이트 지원"
+  "versionCode": 4,
+  "versionName": "1.4.0",
+  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.4.0/JAIT-PMS.apk",
+  "notes": "스플래시 화면 추가 · 오프라인/연결오류 안내 화면 · 안정성 개선"
 }
