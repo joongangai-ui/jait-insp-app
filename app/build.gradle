@@ -3,13 +3,15 @@ plugins { id 'com.android.application' }
 android {
     namespace 'com.joongang.insp'
     compileSdk 34
+
     defaultConfig {
         applicationId "com.joongang.insp"
         minSdk 24
         targetSdk 34
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.3.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -22,6 +24,7 @@ android {
     }
 }
 
+// Kotlin stdlib 중복 클래스 충돌 방지(kotlin-stdlib-jdk7/jdk8 옛 버전 제거)
 configurations.all {
     exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
     exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
