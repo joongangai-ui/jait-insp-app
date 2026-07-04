@@ -40,7 +40,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     // ★ 앱이 열 모바일 페이지 주소 (http/https 모두 지원). 여기만 바꾸면 됨.
-    private static final String START_URL = "https://jaitpms.com/m.php";
+    private static final String START_URL = "https://jaitpms.com/printer-monitor/nas-web/m.php";
 
     private WebView web;
     private ValueCallback<Uri[]> filePathCallback;
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* ─────────── 인앱 자동 업데이트 (사이드로드 APK) ─────────── */
-    private static final String VERSION_URL = "https://jaitpms.com/printer-monitor/nas-web/app_version.json";
+    private static final String VERSION_URL = "https://jaitseoul.synology.me/printer-monitor/nas-web/app_version.json";
     private long updDownloadId = -1;
     private BroadcastReceiver updReceiver;
 
