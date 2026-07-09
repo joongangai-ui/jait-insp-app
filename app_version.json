@@ -1,6 +1,6 @@
 {
-  "versionCode": 4,
-  "versionName": "1.4.0",
-  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.4.0/JAIT-PMS.apk",
-  "notes": "스플래시 화면 추가 · 오프라인/연결오류 안내 화면 · 안정성 개선"
+  "versionCode": 5,
+  "versionName": "1.5.0",
+  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.5.0/JAIT-PMS.apk",
+  "notes": "로그인 유지 개선 — 앱을 껐다 켜도 다시 로그인할 필요 없이 90일 유지됩니다. 업데이트 안내도 개선했습니다."
 }
