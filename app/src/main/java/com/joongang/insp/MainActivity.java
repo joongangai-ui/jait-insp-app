@@ -101,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
                     showOfflinePage();
                 }
             }
+
+            // ★ 페이지 로드 끝날 때마다 쿠키를 디스크에 저장 → 앱 껐다 켜도 로그인 유지(90일 지속쿠키가 살아남음)
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                try { CookieManager.getInstance().flush(); } catch (Exception ignored) {}
+            }
         });
 
         // 오프라인 화면의 '다시 시도' → 메인 페이지 재로딩 (신뢰된 자사 페이지에만 노출)
@@ -209,9 +215,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             new androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("업데이트 있음" + (ver.isEmpty() ? "" : " (v" + ver + ")"))
-                    .setMessage((notes.isEmpty() ? "새 버전이 있습니다." : notes) + "\n\n지금 업데이트할까요?")
+                    .setMessage((notes.isEmpty() ? "새 버전이 있습니다." : notes) + "\n\n지금 업데이트할까요?\n(앱 내 설치가 안 되면 '브라우저로 받기'를 눌러 받은 뒤 설치하세요.)")
                     .setCancelable(true)
                     .setNegativeButton("나중에", null)
+                    .setNeutralButton("브라우저로 받기", (d, w) -> {
+                        try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); }
+                        catch (Exception e) { Toast.makeText(this, "브라우저를 열 수 없습니다", Toast.LENGTH_SHORT).show(); }
+                    })
                     .setPositiveButton("업데이트", (d, w) -> startUpdateDownload(url))
                     .show();
         } catch (Exception ignored) {}
@@ -357,6 +367,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         web.saveState(outState);
+    }
+
+    // ★ 앱이 백그라운드로 갈 때 쿠키를 디스크에 확실히 저장(프로세스 종료돼도 로그인 유지)
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try { CookieManager.getInstance().flush(); } catch (Exception ignored) {}
     }
 
     @Override
