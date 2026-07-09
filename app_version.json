@@ -1,6 +1,6 @@
 {
-  "versionCode": 5,
-  "versionName": "1.5.0",
-  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.5.0/JAIT-PMS.apk",
-  "notes": "로그인 유지 개선 — 앱을 껐다 켜도 다시 로그인할 필요 없이 90일 유지됩니다. 업데이트 안내도 개선했습니다."
+  "versionCode": 6,
+  "versionName": "1.6.0",
+  "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.6.0/JAIT-PMS.apk",
+  "notes": "이번 한 번만 기존 앱을 삭제 후 새로 설치해주세요. 이후부터는 '업데이트' 한 번만 누르면 삭제 없이 바로 최신 버전으로 업데이트됩니다. (로그인도 계속 유지됩니다)"
 }
