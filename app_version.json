@@ -1,6 +1,6 @@
 {
-  "versionCode": 6,
-  "versionName": "1.6.0",
+  "versionCode": 7,
+  "versionName": "1.6.1",
   "url": "https://github.com/joongangai-ui/jait-insp-app/releases/download/v1.6.0/JAIT-PMS.apk",
-  "notes": "이번 한 번만 기존 앱을 삭제 후 새로 설치해주세요. 이후부터는 '업데이트' 한 번만 누르면 삭제 없이 바로 최신 버전으로 업데이트됩니다. (로그인도 계속 유지됩니다)"
+  "notes": "음성 메모·마이크 입력 오류를 수정했습니다. 업데이트 후 앱을 처음 켤 때 '마이크 권한 허용'을 눌러주세요. (이미 거부했다면 폰 설정 > 앱 > 권한 > 마이크 에서 켜주세요)"
 }
