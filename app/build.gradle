@@ -8,8 +8,8 @@ android {
         applicationId "com.joongang.insp"
         minSdk 24
         targetSdk 34
-        versionCode 6
-        versionName "1.6.0"
+        versionCode 7
+        versionName "1.6.1"
     }
 
     // ★ 고정 서명키 — 모든 빌드를 동일 키로 서명 → 기존 앱 위에 바로 덮어쓰기 업데이트(삭제 불필요)
