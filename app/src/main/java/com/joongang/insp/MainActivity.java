@@ -355,6 +355,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> need = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             need.add(android.Manifest.permission.CAMERA);
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+            need.add(android.Manifest.permission.RECORD_AUDIO);   // 음성 입력(마이크)
         if (Build.VERSION.SDK_INT >= 33) {
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)
                 need.add(android.Manifest.permission.POST_NOTIFICATIONS);
